@@ -1,92 +1,86 @@
 // src/theme.ts
 import { extendTheme } from '@chakra-ui/react';
+import { mode } from '@chakra-ui/theme-tools';
 
 const colors = {
-  icterine: {
-    50: '#fcfcdf',
-    100: '#f8f9c0',
-    200: '#f5f6a0',
-    300: '#f1f380',
-    400: '#edf060',
-    500: '#e7eb23',
-    600: '#b6b911',
-    700: '#797b0b',
-    800: '#3d3e06',
-    900: '#3d3e06', // fallback for 900
-  },
-  cardinal: {
-    50: '#f6d1d6',
-    100: '#eca4ad',
-    200: '#e37684',
-    300: '#da485c',
-    400: '#c5283d',
-    500: '#9c2030',
-    600: '#751824',
-    700: '#4e1018',
-    800: '#27080c',
-    900: '#27080c', // fallback for 900
-  },
-  french_gray: {
-    50: '#f6f7f9',
-    100: '#edeff2',
-    200: '#e4e7ec',
-    300: '#dbdfe6',
-    400: '#d2d7df',
-    500: '#a0aabb',
-    600: '#6d7d97',
-    700: '#485365',
-    800: '#242a33',
-    900: '#242a33', // fallback for 900
-  },
-  space_cadet: {
-    50: '#ced0df',
-    100: '#9da0bf',
-    200: '#6d71a0',
-    300: '#4a4d72',
-    400: '#2b2d42',
-    500: '#222334',
-    600: '#191b27',
-    700: '#11121a',
-    800: '#08090d',
-    900: '#08090d', // fallback for 900
-  },
-  night: {
-    50: '#d5c8cc',
-    100: '#ab929a',
-    200: '#7c5f69',
-    300: '#45353b',
-    400: '#0d0a0b',
-    500: '#0c090a',
-    600: '#090707',
-    700: '#060405',
-    800: '#030202',
-    900: '#030202', // fallback for 900
+  brand: {
+    chartreuse: '#D4E44D', // bright yellow-green (same for light/dark for vibrancy)
+    cardinal: '#E31B23',   // bright red (same for light/dark)
+    black: '#000000',      // black for light mode text
+    white: '#FFFFFF',      // white for dark mode text
+    backgroundLight: '#F5F7E0', // pale green background for light mode
+    backgroundDark: '#121212',  // very dark gray background for dark mode
+    textPrimaryLight: '#000000', // black text in light mode
+    textPrimaryDark: '#FFFFFF',  // white text in dark mode
+    textSecondaryLight: '#333333', // dark gray text in light mode
+    textSecondaryDark: '#CCCCCC',  // light gray text in dark mode
+    neutralGrayLight: '#888888',    // gray for borders etc in light mode
+    neutralGrayDark: '#666666',     // gray for borders etc in dark mode
   },
 };
 
 const fonts = {
-  heading: `'Inter', sans-serif`,
-  body: `'Inter', sans-serif`,
+  heading: "'Merriweather', serif",
+  body: "'Merriweather', serif",
+};
+
+const styles = {
+  global: (props: { colorMode: string }) => ({
+    body: {
+      bg: mode(colors.brand.backgroundLight, colors.brand.backgroundDark)(props),
+      color: mode(colors.brand.textPrimaryLight, colors.brand.textPrimaryDark)(props),
+      fontFamily: fonts.body,
+      lineHeight: 'tall',
+    },
+    a: {
+      color: mode(colors.brand.chartreuse, colors.brand.chartreuse)(props),
+      _hover: {
+        textDecoration: 'underline',
+        color: mode(colors.brand.cardinal, colors.brand.cardinal)(props),
+      },
+    },
+    'h1, h2, h3, h4, h5, h6': {
+      fontFamily: fonts.heading,
+      color: mode(colors.brand.black, colors.brand.chartreuse)(props),
+    },
+  }),
+};
+
+const components = {
+  Button: {
+    baseStyle: {
+      fontWeight: 'bold',
+      rounded: 'md',
+      fontFamily: fonts.body,
+    },
+    variants: {
+      solid: (props: { colorMode: string }) => ({
+        bg: mode(colors.brand.chartreuse, colors.brand.chartreuse)(props),
+        color: mode(colors.brand.black, colors.brand.black)(props),
+        _hover: {
+          bg: mode('#b5cc3a', '#9ebc2f')(props), // slightly darker chartreuse on hover
+        },
+      }),
+      outline: (props: { colorMode: string }) => ({
+        borderColor: mode(colors.brand.cardinal, colors.brand.cardinal)(props),
+        color: mode(colors.brand.cardinal, colors.brand.cardinal)(props),
+        _hover: {
+          bg: mode(colors.brand.cardinal, colors.brand.cardinal)(props),
+          color: mode(colors.brand.backgroundLight, colors.brand.backgroundDark)(props),
+        },
+      }),
+    },
+  },
 };
 
 const theme = extendTheme({
   colors,
   fonts,
-  styles: {
-    global: {
-      body: {
-        bg: 'french_gray.50',
-        color: 'night.400',
-        lineHeight: '1.6',
-      },
-      a: {
-        color: 'cardinal.400',
-        _hover: {
-          textDecoration: 'underline',
-          color: 'cardinal.300',
-        },
-      },
-    },
+  styles,
+  components,
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
   },
 });
 

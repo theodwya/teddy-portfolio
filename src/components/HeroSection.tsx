@@ -38,11 +38,11 @@ const rotatingTexts = [
 export default function HeroSection() {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
 
-  // Use AboutMe page colors for background and text
-  const bg = useColorModeValue('french_gray.50', 'space_cadet.800');
-  const helloColor = useColorModeValue('cardinal.400', 'icterine.400');
-  const nameColor = useColorModeValue('night.900', 'icterine.400');
-  const rotatingTextColor = useColorModeValue('icterine.400', 'icterine.400');
+  // Use brand colors from theme tokens
+  const bg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
+  const helloColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
+  const nameColor = useColorModeValue('brand.black', 'brand.chartreuse');
+  const rotatingTextColor = useColorModeValue('brand.cardinal', 'brand.black');
 
   useEffect(() => {
     const iconTimer = setInterval(() => {
@@ -62,35 +62,26 @@ export default function HeroSection() {
       maxW="900px"
       mx="auto"
     >
-      <Flex
-        direction="column"
-        align="center"
-        gap={8}
-      >
+      <Flex direction="column" align="center" gap={8}>
         <Heading
           as="h1"
           fontSize={{ base: '6xl', md: '8xl' }}
           fontWeight="extrabold"
           color={helloColor}
-          fontFamily="serif"
+          fontFamily="heading"
           textAlign="center"
           lineHeight="1"
         >
           Hello,
         </Heading>
 
-        <Flex
-          align="center"
-          gap={6}
-          flexWrap="wrap"
-          justify="center"
-        >
+        <Flex align="center" gap={6} flexWrap="wrap" justify="center">
           <Heading
             as="h2"
             fontSize={{ base: '4xl', md: '6xl' }}
             fontWeight="bold"
             color={nameColor}
-            fontFamily="serif"
+            fontFamily="heading"
             mb={0}
           >
             I am Teddy
@@ -105,11 +96,7 @@ export default function HeroSection() {
           />
         </Flex>
 
-        <Box
-          position="relative"
-          height={{ base: '120px', md: '150px' }}
-          width={{ base: '120px', md: '150px' }}
-        >
+        <Box position="relative" height={{ base: '120px', md: '150px' }} width={{ base: '120px', md: '150px' }}>
           <AnimatePresence mode="wait">
             <MotionBox
               key={techIcons[currentIconIndex]}
@@ -127,24 +114,14 @@ export default function HeroSection() {
               maxH="150px"
               maxW="150px"
             >
-              <Image
-                src={techIcons[currentIconIndex]}
-                alt="Tech Icon"
-                maxH="150px"
-                maxW="150px"
-                mx="auto"
-              />
+              <Image src={techIcons[currentIconIndex]} alt="Tech Icon" maxH="150px" maxW="150px" mx="auto" />
             </MotionBox>
           </AnimatePresence>
         </Box>
 
-        <Box
-          minW={{ base: '350px', md: '400px' }}
-          textAlign="center"
-          mt={4}
-        >
+        <Box minW={{ base: '350px', md: '400px' }} textAlign="center" mt={4}>
           <Box
-            bgGradient="linear(to-r, icterine.200, icterine.400)"
+            bgGradient="linear(to-r, brand.chartreuse, brand.chartreuse)"
             px={4}
             py={2}
             rounded="md"
@@ -159,7 +136,7 @@ export default function HeroSection() {
               fontSize={{ base: '3xl', md: '4xl' }}
               color={rotatingTextColor}
               fontWeight="bold"
-              fontFamily="serif"
+              fontFamily="heading"
               minWidth="400px"
             />
           </Box>

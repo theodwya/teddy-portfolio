@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTheme } from '@chakra-ui/react';
 
 interface AnimatedButtonProps {
   label: string;
@@ -17,7 +18,7 @@ const bounce = keyframes`
   }
 `;
 
-const StyledLink = styled(RouterLink)`
+const StyledLink = styled(RouterLink)<{ bgColor: string; shadowColor: string; textColor: string }>`
   position: relative;
   display: flex;
   align-items: center;
@@ -27,14 +28,14 @@ const StyledLink = styled(RouterLink)`
   font-size: 12px;
   text-transform: uppercase;
   border-radius: 25px;
-  background-color: #0d0a0b; /* night */
+  background-color: ${(props) => props.bgColor};
   background-image: linear-gradient(
     45deg,
-    rgba(231, 235, 35, 0.2) 0%,
-    rgba(13, 10, 11, 0.2) 100%
+    rgba(212, 228, 77, 0.2) 0%,  /* chartreuse with opacity */
+    rgba(0, 0, 0, 0.2) 100%
   );
-  box-shadow: 0 7px 15px 0 rgba(231, 235, 35, 0.4);
-  color: #e7eb23; /* icterine */
+  box-shadow: 0 7px 15px 0 ${(props) => props.shadowColor};
+  color: ${(props) => props.textColor};
   font-weight: 600;
   font-family: serif;
   letter-spacing: 2px;
@@ -44,7 +45,7 @@ const StyledLink = styled(RouterLink)`
   text-decoration: none;
 
   &:hover {
-    box-shadow: 0 7px 25px 5px rgba(231, 235, 35, 0.7);
+    box-shadow: 0 7px 25px 5px ${(props) => props.shadowColor};
     animation: ${bounce} 1.5s ease-in-out infinite;
     text-decoration: none;
   }
@@ -67,7 +68,7 @@ const StyledLink = styled(RouterLink)`
     font-family: serif;
     font-size: 11px;
     letter-spacing: 2px;
-    color: #e7eb23;
+    color: ${(props) => props.textColor};
     opacity: 1;
     transition: transform 0.3s ease, opacity 0.3s ease;
     pointer-events: none;
@@ -79,7 +80,7 @@ const StyledLink = styled(RouterLink)`
   }
 
   i {
-    color: #e7eb23;
+    color: ${(props) => props.textColor};
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -107,8 +108,15 @@ const StyledLink = styled(RouterLink)`
 `;
 
 export default function AnimatedButton({ label, to = '/', onClick }: AnimatedButtonProps) {
+  const theme = useTheme();
+
+  // Use your brand colors from theme
+  const bgColor = theme.colors.brand?.black ?? '#000000';
+  const shadowColor = 'rgba(212, 228, 77, 0.4)'; // chartreuse with opacity for shadow
+  const textColor = theme.colors.brand?.chartreuse ?? '#D4E44D';
+
   return (
-    <StyledLink to={to} data-label={label} onClick={onClick}>
+    <StyledLink to={to} data-label={label} onClick={onClick} bgColor={bgColor} shadowColor={shadowColor} textColor={textColor}>
       {label.split('').map((char, idx) => (
         <i key={idx}>{char === ' ' ? '\u00A0' : char}</i>
       ))}

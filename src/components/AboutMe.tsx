@@ -1,7 +1,7 @@
 // src/components/AboutMe.tsx
-import { Box, Flex, Heading, Text, List, ListItem, ListIcon, Divider } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, List, ListItem, ListIcon, Divider, useColorModeValue } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
- 
+
 const aboutMeText = `
 I’m a former Navy submarine mechanic with 13 years of service, who successfully transitioned into the tech industry. After leaving the military, I earned a role at a leading FAANG company and have since dedicated the past five years to immersing myself in software engineering. From working hands-on with complex machinery to mastering new programming languages and technologies, I bring a disciplined, problem-solving mindset to every project.
 
@@ -18,13 +18,20 @@ const top3 = {
 };
 
 export default function AboutMe() {
+  // Use theme tokens for colors
+  const headingColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
+  const textColor = useColorModeValue('brand.black', 'brand.chartreuse');
+  const sidebarBg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
+  const sidebarBorder = useColorModeValue('brand.neutralGrayLight', 'brand.neutralGrayDark');
+  const starColor = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
+
   return (
     <Flex
       maxW="900px"
       mx="auto"
       my={12}
       p={6}
-      bg="french_gray.50"
+      bg={sidebarBg}
       rounded="md"
       shadow="md"
       direction={{ base: 'column', md: 'row' }}
@@ -32,33 +39,41 @@ export default function AboutMe() {
     >
       {/* Main About Me content */}
       <Box flex="2">
-        <Heading as="h2" size="xl" mb={6} color="cardinal.400">
+        <Heading as="h2" size="xl" mb={6} color={headingColor} fontFamily="heading">
           About Me
         </Heading>
-        <Text whiteSpace="pre-line" color="night.700" fontSize="md" lineHeight="tall">
+        <Text whiteSpace="pre-line" color={textColor} fontSize="md" lineHeight="tall" fontFamily="body">
           {aboutMeText}
         </Text>
       </Box>
 
       {/* Sidebar */}
-      <Box flex="1" bg="white" p={4} rounded="md" shadow="sm" borderWidth="1px">
-        <Heading as="h3" size="md" mb={4} color="cardinal.400" textAlign="center">
+      <Box
+        flex="1"
+        bg={sidebarBg}
+        p={4}
+        rounded="md"
+        shadow="sm"
+        borderWidth="1px"
+        borderColor={sidebarBorder}
+      >
+        <Heading as="h3" size="md" mb={4} color={headingColor} textAlign="center" fontFamily="heading">
           Get to Know Me: Top 3's
         </Heading>
         {Object.entries(top3).map(([category, items]) => (
           <Box key={category} mb={4}>
-            <Heading as="h4" size="sm" mb={2} color="space_cadet.700">
+            <Heading as="h4" size="sm" mb={2} color={textColor} fontFamily="heading">
               {category}
             </Heading>
             <List spacing={1}>
               {items.map((item, idx) => (
-                <ListItem key={idx} display="flex" alignItems="center">
-                  <ListIcon as={StarIcon} color="icterine.400" />
+                <ListItem key={idx} display="flex" alignItems="center" color={textColor} fontFamily="body">
+                  <ListIcon as={StarIcon} color={starColor} />
                   {item}
                 </ListItem>
               ))}
             </List>
-            <Divider mt={4} />
+            <Divider mt={4} borderColor={sidebarBorder} />
           </Box>
         ))}
       </Box>

@@ -13,10 +13,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import AnimatedButton from '../components/AnimatedButton';
 
 export default function LandingPage() {
-  const containerBg = useColorModeValue('french_gray.50', 'space_cadet.800');
-  const headingColor = useColorModeValue('cardinal.400', 'icterine.400');
-  const bodyColor = useColorModeValue('night.700', 'gray.300');
-  const accentColor = useColorModeValue('icterine.400', 'icterine.400');
+  // Use brand tokens for colors
+  const containerBg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
+  const headingColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
+  const bodyColor = useColorModeValue('brand.textPrimaryLight', 'brand.textSecondaryDark');
+  const accentColor = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
+  const buttonTextColor = useColorModeValue('brand.black', 'brand.black');
+  const buttonHoverBg = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
 
   const landingBlurb = `
 From Navy submarine mechanic to FAANG software engineer, I bring 15+ years of disciplined problem-solving and technical mastery to every project. 
@@ -26,7 +29,7 @@ Specializing in full-stack development, I combine deep technical expertise with 
 
   return (
     <Flex
-      bg={useColorModeValue('french_gray.50', 'space_cadet.800')}
+      bg={useColorModeValue('brand.backgroundLight', 'brand.backgroundDark')}
       align="center"
       justify="center"
       px={{ base: 6, md: 12 }}
@@ -52,12 +55,12 @@ Specializing in full-stack development, I combine deep technical expertise with 
             mb={4}
             fontWeight="bold"
             color={headingColor}
-            fontFamily="serif"
+            fontFamily="heading"
           >
             Teddy Wyatt | Your Future Tech Solutions Expert 
           </Heading>
 
-          <Text fontSize="lg" mb={8} maxW="lg" color={bodyColor} lineHeight="tall" whiteSpace="pre-line">
+          <Text fontSize="lg" mb={8} maxW="lg" color={bodyColor} lineHeight="tall" whiteSpace="pre-line" fontFamily="body">
             {landingBlurb}
           </Text>
 
@@ -70,13 +73,13 @@ Specializing in full-stack development, I combine deep technical expertise with 
               as={RouterLink}
               to="/contact"
               bg={accentColor}
-              color="night.900"
+              color={buttonTextColor}
               fontWeight="bold"
               rounded="md"
               px={6}
               py={3}
-              _hover={{ bg: 'icterine.300' }}
-              fontFamily="serif"
+              _hover={{ bg: buttonHoverBg }}
+              fontFamily="body"
             >
               Get in Touch
             </Button>

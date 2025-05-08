@@ -6,15 +6,15 @@ import { Card, CardName, CardButton } from './StyledProjectCard';
 export default function ProjectCarousel() {
   const theme = useTheme();
 
-  // Theme colors for light/dark mode
-  const bgColor = useColorModeValue(theme.colors.icterine[400], theme.colors.icterine[300]);
-  const shadowColor = useColorModeValue(theme.colors.night[900], theme.colors.cardinal[900]);
+  // Use brand tokens for colors with light/dark mode support
+  const bgColor = useColorModeValue(theme.colors.brand.chartreuse, theme.colors.brand.chartreuse);
+  const shadowColor = useColorModeValue(theme.colors.brand.black, theme.colors.brand.cardinal);
   const shadowOffset = '12px';
   const shadowOffsetLight = '16px';
-  const cardNameColor = useColorModeValue(theme.colors.night[900], theme.colors.night[100]);
-  const buttonText = useColorModeValue(theme.colors.night[900], theme.colors.night[900]);
-  const buttonBg = useColorModeValue(theme.colors.french_gray[50], theme.colors.space_cadet[700]);
-  const buttonBgHover = useColorModeValue(theme.colors.french_gray[100], theme.colors.space_cadet[600]);
+  const cardNameColor = useColorModeValue(theme.colors.brand.black, theme.colors.brand.chartreuse);
+  const buttonText = useColorModeValue(theme.colors.brand.black, theme.colors.brand.black);
+  const buttonBg = useColorModeValue(theme.colors.brand.backgroundLight, theme.colors.brand.backgroundDark);
+  const buttonBgHover = useColorModeValue(theme.colors.brand.backgroundLight, theme.colors.brand.backgroundDark);
 
   const projects = [
     {
@@ -57,7 +57,7 @@ export default function ProjectCarousel() {
         fontFamily="serif"
         fontSize={{ base: '3xl', md: '4xl' }}
         fontWeight="bold"
-        color={useColorModeValue(theme.colors.night[900], theme.colors.icterine[400])}
+        color={useColorModeValue(theme.colors.brand.black, theme.colors.brand.chartreuse)}
         mb={8}
         textAlign="center"
       >

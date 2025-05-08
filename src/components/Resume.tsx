@@ -1,4 +1,3 @@
-// src/components/ResumePage.tsx
 import React from 'react';
 import {
   Box,
@@ -131,11 +130,11 @@ const sidebarHighlights = {
 };
 
 export default function ResumePage() {
-  const headingColor = useColorModeValue('cardinal.400', 'icterine.400');
-  const textColor = useColorModeValue('night.700', 'gray.300');
-  const accentColor = useColorModeValue('icterine.400', 'icterine.300');
-  const sidebarBg = useColorModeValue('white', 'space_cadet.700');
-  const sidebarBorder = useColorModeValue('gray.200', 'gray.600');
+  const headingColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
+  const textColor = useColorModeValue('brand.textPrimaryLight', 'brand.textSecondaryDark');
+  const accentColor = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
+  const sidebarBg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
+  const sidebarBorder = useColorModeValue('brand.neutralGrayLight', 'brand.neutralGrayDark');
 
   return (
     <Flex
@@ -143,7 +142,7 @@ export default function ResumePage() {
       mx="auto"
       my={12}
       p={6}
-      bg="french_gray.50"
+      bg={sidebarBg}
       rounded="md"
       shadow="md"
       direction={{ base: 'column', md: 'row' }}
@@ -151,26 +150,26 @@ export default function ResumePage() {
     >
       {/* Main Resume Content */}
       <Box flex="2">
-        <Heading as="h2" size="xl" mb={6} color={headingColor}>
+        <Heading as="h2" size="xl" mb={6} color={headingColor} fontFamily="heading">
           Theodore (Teddy) G. Wyatt
         </Heading>
 
         {/* Summary */}
         <Box mb={8}>
-          <Heading as="h3" size="lg" mb={3} color={textColor}>
+          <Heading as="h3" size="lg" mb={3} color={textColor} fontFamily="heading">
             Summary
           </Heading>
-          <Text whiteSpace="pre-line" color={textColor} fontSize="md" lineHeight="tall">
+          <Text whiteSpace="pre-line" color={textColor} fontSize="md" lineHeight="tall" fontFamily="body">
             {resumeSummary}
           </Text>
         </Box>
 
         {/* Technical Skills */}
         <Box mb={8}>
-          <Heading as="h3" size="lg" mb={3} color={textColor}>
+          <Heading as="h3" size="lg" mb={3} color={textColor} fontFamily="heading">
             Technical Skills
           </Heading>
-          <List spacing={2} color={textColor} fontSize="md" styleType="disc" pl={6}>
+          <List spacing={2} color={textColor} fontSize="md" styleType="disc" pl={6} fontFamily="body">
             {technicalSkills.map((skill, idx) => (
               <ListItem key={idx}>{skill}</ListItem>
             ))}
@@ -179,18 +178,18 @@ export default function ResumePage() {
 
         {/* Professional Experience */}
         <Box mb={8}>
-          <Heading as="h3" size="lg" mb={3} color={textColor}>
+          <Heading as="h3" size="lg" mb={3} color={textColor} fontFamily="heading">
             Professional Experience
           </Heading>
           {professionalExperience.map(({ title, company, location, dates, details }, idx) => (
             <Box key={idx} mb={6}>
-              <Heading as="h4" size="md" color={headingColor}>
+              <Heading as="h4" size="md" color={headingColor} fontFamily="heading">
                 {title} | {company} | {location}
               </Heading>
-              <Text fontSize="sm" color={textColor} mb={2}>
+              <Text fontSize="sm" color={textColor} mb={2} fontFamily="body">
                 {dates}
               </Text>
-              <List spacing={1} color={textColor} fontSize="md" pl={6} styleType="disc">
+              <List spacing={1} color={textColor} fontSize="md" pl={6} styleType="disc" fontFamily="body">
                 {details.map((detail, i) => (
                   <ListItem key={i}>{detail}</ListItem>
                 ))}
@@ -201,19 +200,19 @@ export default function ResumePage() {
 
         {/* Education */}
         <Box>
-          <Heading as="h3" size="lg" mb={3} color={textColor}>
+          <Heading as="h3" size="lg" mb={3} color={textColor} fontFamily="heading">
             Education
           </Heading>
           {education.map(({ degree, school, year, honors }, idx) => (
             <Box key={idx} mb={4}>
-              <Heading as="h4" size="md" color={headingColor}>
+              <Heading as="h4" size="md" color={headingColor} fontFamily="heading">
                 {degree}
               </Heading>
-              <Text fontSize="sm" color={textColor}>
+              <Text fontSize="sm" color={textColor} fontFamily="body">
                 {school} {year && `| ${year}`}
               </Text>
               {honors && (
-                <Text fontSize="sm" color={textColor} fontStyle="italic">
+                <Text fontSize="sm" color={textColor} fontStyle="italic" fontFamily="body">
                   {honors}
                 </Text>
               )}
@@ -230,20 +229,23 @@ export default function ResumePage() {
         rounded="md"
         shadow="sm"
         borderWidth="1px"
+        borderColor={sidebarBorder}
         maxH="fit-content"
       >
         {Object.entries(sidebarHighlights).map(([section, items]) => (
           <Box key={section} mb={6}>
-            <Heading as="h4" size="md" mb={3} color={textColor} textAlign="center">
+            <Heading as="h4" size="md" mb={3} color={headingColor} textAlign="center" fontFamily="heading">
               {section}
             </Heading>
-            <List spacing={2} color={textColor} fontSize="md" pl={4} styleType="disc">
+            <List spacing={2} color={textColor} fontSize="md" pl={4} styleType="disc" fontFamily="body">
               {items.map((item, idx) => (
                 <ListItem key={idx}>
-                    <ListIcon as={StarIcon} color={accentColor}/>{item}</ListItem>
+                  <ListIcon as={StarIcon} color={accentColor} />
+                  {item}
+                </ListItem>
               ))}
             </List>
-            <Divider mt={4} />
+            <Divider mt={4} borderColor={sidebarBorder} />
           </Box>
         ))}
       </Box>

@@ -6,6 +6,7 @@ import Header from './components/Header';
 import About from './pages/About';
 import LandingPage from './pages/LandingPage'; // import landing page
 import Resume from './pages/Resume'; // import resume page
+import BlogPage from './pages/BlogPage'; // import blog page
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -28,7 +29,7 @@ function App() {
           {/* Add other routes here */}
           {/* <Route path="/projects" element={<Projects />} /> */}
           {/* <Route path="/contact" element={<Contact />} /> */}
-          {/* <Route path="/blog" element={<Blog />} /> */}
+          <Route path="/blog" element={<BlogPage />} />
           {/* <Route path="/projects/:id" element={<ProjectDetail />} /> */}
           {/* Add other routes here */}
         </Routes>

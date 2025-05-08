@@ -51,7 +51,7 @@ export const CardName = styled(Heading)<CardNameProps>`
   text-transform: uppercase;
   margin: 1rem 0;
   text-align: center;
-  font-family: serif;
+  font-family: 'Merriweather', serif;
   white-space: normal;
   line-height: 1.3;
 `;

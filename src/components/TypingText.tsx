@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
 interface TypingTextProps {
   texts: string[];
@@ -18,15 +18,19 @@ export default function TypingText({
   typingSpeed = 100,
   deletingSpeed = 50,
   pauseTime = 1500,
-  fontSize = { base: '3xl', md: '4xl' },
-  color = 'icterine.400',
-  fontWeight = 'bold',
-  fontFamily = 'serif',
+  fontSize = { base: '4xl', md: '5xl' },
+  color,
+  fontWeight = 'extrabold',
+  fontFamily = 'heading',
   minWidth = '350px',
 }: TypingTextProps) {
   const [displayedText, setDisplayedText] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Use brand colors from theme if color prop not provided
+  const textColor = useColorModeValue(color ?? 'brand.cardinal', color ?? 'brand.black');
+  const borderColor = useColorModeValue('brand.cardinal', 'brand.black');
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -54,17 +58,17 @@ export default function TypingText({
   return (
     <Box
       as="span"
-      fontSize={{ base: '4xl', md: '5xl' }}  // bigger font size
-      color="night.900"                      // strong dark color
-      fontWeight="extrabold"                 // very bold
-      fontFamily="serif"
+      fontSize={fontSize}
+      color={textColor}
+      fontWeight={fontWeight}
+      fontFamily={fontFamily}
       minW={minWidth}
       whiteSpace="nowrap"
-      borderRight="3px solid"                // slightly thicker cursor
-      borderColor="night.900"
+      borderRight="3px solid"
+      borderColor={borderColor}
       pr={2}
       userSelect="none"
-      textShadow="1px 1px 2px rgba(0,0,0,0.15)"  // subtle shadow for depth
+      textShadow="1px 1px 2px rgba(0,0,0,0.15)"
     >
       {displayedText}
     </Box>
