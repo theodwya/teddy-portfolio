@@ -13,9 +13,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import AnimatedButton from '../components/AnimatedButton';
 
 export default function LandingPage() {
-  const containerBg = useColorModeValue('white', 'gray.800');
-  const headingColor = useColorModeValue('night.900', 'white');
-  const bodyColor = useColorModeValue('blackAlpha.800', 'gray.300');
+  const containerBg = useColorModeValue('french_gray.50', 'space_cadet.800');
+  const headingColor = useColorModeValue('cardinal.400', 'icterine.400');
+  const bodyColor = useColorModeValue('night.700', 'gray.300');
   const accentColor = useColorModeValue('icterine.400', 'icterine.400');
 
   const landingBlurb = `
@@ -26,24 +26,23 @@ Specializing in full-stack development, I combine deep technical expertise with 
 
   return (
     <Flex
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      minH="100vh"
+      bg={useColorModeValue('french_gray.50', 'space_cadet.800')}
       align="center"
       justify="center"
       px={{ base: 6, md: 12 }}
+      py={{ base: 10, md: 20 }}
     >
       <Box
         bg={containerBg}
-        borderRadius="lg"
-        boxShadow="lg"
-        maxW="1200px"
+        borderRadius="md"
+        boxShadow="md"
+        maxW="900px"
         w="full"
         p={{ base: 6, md: 12 }}
         display={{ base: 'block', md: 'flex' }}
         alignItems="center"
         gap={10}
-        mt={-400}  // reduced top margin for seamless flow
-        mb={6}
+        mt={0}
       >
         {/* Left content */}
         <Box flex="1" maxW={{ base: '100%', md: '50%' }}>
@@ -94,7 +93,7 @@ Specializing in full-stack development, I combine deep technical expertise with 
             maxH="400px"
             objectFit="cover"
             mx="auto"
-            boxShadow="lg"
+            boxShadow="md"
           />
         </Box>
       </Box>

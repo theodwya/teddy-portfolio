@@ -37,11 +37,11 @@ export default function ProjectCarousel() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 600,
+    speed: 300,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     arrows: true,
     centerMode: false,
     responsive: [
@@ -51,7 +51,7 @@ export default function ProjectCarousel() {
   };
 
   return (
-    <Box maxW="1200px" mx="auto" mt={-425} px={{ base: 6, md: 12 }} overflowX="visible">
+    <Box maxW="1200px" mx="auto" mt={12} px={{ base: 6, md: 12 }} overflowX="visible">
       <Box
         as="h2"
         fontFamily="serif"

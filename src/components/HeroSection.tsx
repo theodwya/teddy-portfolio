@@ -11,41 +11,39 @@ import TypingText from './TypingText';
 
 const MotionBox = motion(Box);
 
-// Replace these with your actual tech icon image paths or URLs
 const techIcons = [
-    '/assets/tech-icons/git.svg',
-    '/assets/tech-icons/react.svg',
-    '/assets/tech-icons/python.svg',
-    '/assets/tech-icons/springboot.svg',
-    '/assets/tech-icons/github.svg',
-    '/assets/tech-icons/aws.svg',
-    '/assets/tech-icons/docker.svg',
-    '/assets/tech-icons/typescript.svg',
-    '/assets/tech-icons/css.svg',
-    '/assets/tech-icons/html5.svg',
-    '/assets/tech-icons/javascript.svg',
-    '/assets/tech-icons/nodedotjs.svg',
-  
-  ];
-  
-  const rotatingTexts = [
-    'A FullStack Developer.',
-    'A Web Designer.',
-    'A DevOps Engineer.',
-    'A Software Engineer.',
-    'A Cloud Engineer.',
-    'Your Tech Solutions Expert.',
-  ];
+  '/assets/tech-icons/git.svg',
+  '/assets/tech-icons/react.svg',
+  '/assets/tech-icons/python.svg',
+  '/assets/tech-icons/springboot.svg',
+  '/assets/tech-icons/github.svg',
+  '/assets/tech-icons/aws.svg',
+  '/assets/tech-icons/docker.svg',
+  '/assets/tech-icons/typescript.svg',
+  '/assets/tech-icons/css.svg',
+  '/assets/tech-icons/html5.svg',
+  '/assets/tech-icons/javascript.svg',
+  '/assets/tech-icons/nodedotjs.svg',
+];
+
+const rotatingTexts = [
+  'A FullStack Developer.',
+  'A Web Designer.',
+  'A DevOps Engineer.',
+  'A Software Engineer.',
+  'A Cloud Engineer.',
+  'Your Tech Solutions Expert.',
+];
 
 export default function HeroSection() {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
 
+  // Use AboutMe page colors for background and text
   const bg = useColorModeValue('french_gray.50', 'space_cadet.800');
-  const helloColor = useColorModeValue('night.900', 'icterine.400');
+  const helloColor = useColorModeValue('cardinal.400', 'icterine.400');
   const nameColor = useColorModeValue('night.900', 'icterine.400');
   const rotatingTextColor = useColorModeValue('icterine.400', 'icterine.400');
 
-  // Cycle tech icons every 4 seconds
   useEffect(() => {
     const iconTimer = setInterval(() => {
       setCurrentIconIndex((i) => (i + 1) % techIcons.length);
@@ -58,18 +56,17 @@ export default function HeroSection() {
       bg={bg}
       py={{ base: 12, md: 16 }}
       px={{ base: 6, md: 12 }}
-      rounded="lg"
-      shadow="lg"
-      mb={8}
+      rounded="md"
+      shadow="md"
+      mb={12}
+      maxW="900px"
+      mx="auto"
     >
       <Flex
         direction="column"
         align="center"
-        maxW="900px"
-        mx="auto"
         gap={8}
       >
-        {/* Hello - big and bold */}
         <Heading
           as="h1"
           fontSize={{ base: '6xl', md: '8xl' }}
@@ -82,7 +79,6 @@ export default function HeroSection() {
           Hello,
         </Heading>
 
-        {/* I am Teddy with picture */}
         <Flex
           align="center"
           gap={6}
@@ -100,16 +96,15 @@ export default function HeroSection() {
             I am Teddy
           </Heading>
           <Image
-            src="/assets/profile-photo.png" // Replace with your actual photo path
+            src="/assets/profile-photo.png"
             alt="Teddy Wyatt"
             boxSize={{ base: '100px', md: '150px' }}
             borderRadius="full"
             objectFit="cover"
-            boxShadow="xl"
+            boxShadow="lg"
           />
         </Flex>
 
-        {/* Rotating tech icons */}
         <Box
           position="relative"
           height={{ base: '120px', md: '150px' }}
@@ -143,31 +138,30 @@ export default function HeroSection() {
           </AnimatePresence>
         </Box>
 
-        {/* Typing rotating role text */}
         <Box
           minW={{ base: '350px', md: '400px' }}
           textAlign="center"
           mt={4}
         >
-            <Box
-  bgGradient="linear(to-r, yellow.200, yellow.400)"
-  px={4}
-  py={2}
-  rounded="md"
-  display="inline-block"
-  boxShadow="md"
->
-          <TypingText
-            texts={rotatingTexts}
-            typingSpeed={100}
-            deletingSpeed={50}
-            pauseTime={1500}
-            fontSize={{ base: '3xl', md: '4xl' }}
-            color={rotatingTextColor}
-            fontWeight="bold"
-            fontFamily="serif"
-            minWidth="400px"
-          />
+          <Box
+            bgGradient="linear(to-r, icterine.200, icterine.400)"
+            px={4}
+            py={2}
+            rounded="md"
+            display="inline-block"
+            boxShadow="md"
+          >
+            <TypingText
+              texts={rotatingTexts}
+              typingSpeed={100}
+              deletingSpeed={50}
+              pauseTime={1500}
+              fontSize={{ base: '3xl', md: '4xl' }}
+              color={rotatingTextColor}
+              fontWeight="bold"
+              fontFamily="serif"
+              minWidth="400px"
+            />
           </Box>
         </Box>
       </Flex>
