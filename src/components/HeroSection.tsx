@@ -40,9 +40,13 @@ export default function HeroSection() {
 
   // Use brand colors from theme tokens
   const bg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
-  const helloColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
+  const helloColor = useColorModeValue('brand.cardinal', 'brand.cardinal');
   const nameColor = useColorModeValue('brand.black', 'brand.chartreuse');
   const rotatingTextColor = useColorModeValue('brand.cardinal', 'brand.black');
+  const iconBgGradient = useColorModeValue(
+    'linear-gradient(135deg, #D4E44D 0%, #E31B23 100%)', // light mode: chartreuse to cardinal
+    'linear-gradient(135deg, #E31B23 0%, #D4E44D 100%)'  // dark mode: cardinal to chartreuse (reverse)
+  );
 
   useEffect(() => {
     const iconTimer = setInterval(() => {
@@ -96,7 +100,16 @@ export default function HeroSection() {
           />
         </Flex>
 
-        <Box position="relative" height={{ base: '120px', md: '150px' }} width={{ base: '120px', md: '150px' }}>
+        <Box position="relative" height={{ base: '100px', md: '200px' }} width={{ base: '100px', md: '200px' }}   mx="auto"
+  my="auto"
+  maxH="200px"
+  maxW="200px"
+  rounded="full"
+  bg={iconBgGradient}
+  display="flex"
+  alignItems="center"
+  justifyContent="center"
+  boxShadow="md">
           <AnimatePresence mode="wait">
             <MotionBox
               key={techIcons[currentIconIndex]}

@@ -10,6 +10,7 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
   FaCloud,
   FaCode,
@@ -18,7 +19,9 @@ import {
   FaProjectDiagram,
   FaUsers,
 } from 'react-icons/fa';
-import { IconType } from 'react-icons';
+import AnimatedButton from './AnimatedButton';
+
+const MotionBox = motion(Box);
 
 const services = [
   {
@@ -77,8 +80,34 @@ export default function MyServices() {
   const textColor = useColorModeValue('brand.textPrimaryLight', 'brand.textSecondaryDark');
   const boxBg = useColorModeValue('white', 'gray.700');
   const boxShadow = useColorModeValue('md', 'dark-lg');
-  const iconBgLight = useColorModeValue('brand.chartreuse', 'brand.cardinal');
-  const iconColorLight = useColorModeValue('brand.black', 'brand.backgroundDark');
+  const iconBg = useColorModeValue('brand.chartreuse', 'brand.cardinal');
+  const iconColor = useColorModeValue('brand.black', 'brand.backgroundDark');
+
+  // Floating animation with random-ish x and y movement for cloud effect
+  const floatVariants = {
+    float: (custom: number) => ({
+      x: [
+        0,
+        10 * Math.sin(custom * 2),  // side to side offset varies per card
+        0,
+        -10 * Math.sin(custom * 3),
+        0,
+      ],
+      y: [
+        0,
+        -15 + 5 * Math.cos(custom * 2), // up/down offset varies per card
+        0,
+        -10 + 5 * Math.cos(custom * 3),
+        0,
+      ],
+      transition: {
+        delay: custom * 0.5, // stagger start times
+        duration: 8 + custom, // slightly different durations
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    }),
+  };
 
   return (
     <Box maxW="900px" mx="auto" py={{ base: 12, md: 20 }} px={{ base: 6, md: 12 }} bg={bg} rounded="md" shadow="md">
@@ -92,12 +121,11 @@ export default function MyServices() {
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-        {services.map(({ id, title, description, icon, link }) => (
-          <Link
-            as={RouterLink}
-            to={link}
+        {services.map(({ id, title, description, icon, link }, index) => (
+          <MotionBox
             key={id}
-            _hover={{ textDecoration: 'none', boxShadow: 'lg' }}
+            as={Link}
+            to={link}
             rounded="md"
             bg={boxBg}
             p={6}
@@ -107,9 +135,13 @@ export default function MyServices() {
             display="flex"
             alignItems="flex-start"
             gap={4}
+            _hover={{ boxShadow: 'xl' }}
+            variants={floatVariants}
+            animate="float"
+            custom={index}
           >
             <Box
-              bg={iconBgLight}
+              bg={iconBg}
               p={3}
               rounded="md"
               display="flex"
@@ -118,7 +150,7 @@ export default function MyServices() {
               boxSize="50px"
               flexShrink={0}
             >
-              <Icon as={icon as React.ElementType} w={6} h={6} color={iconColorLight} />
+              <Icon as={icon as React.ElementType} w={6} h={6} color={iconColor} />
             </Box>
             <Box>
               <Heading fontFamily="heading" fontSize="xl" mb={2} color={headingColor}>
@@ -128,9 +160,13 @@ export default function MyServices() {
                 {description}
               </Text>
             </Box>
-          </Link>
+          </MotionBox>
         ))}
       </SimpleGrid>
+                  <AnimatedButton
+          label="Which Service Do You Need?"
+          to="/contact"
+        />
     </Box>
   );
 }

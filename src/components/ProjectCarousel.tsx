@@ -11,8 +11,8 @@ export default function ProjectCarousel() {
   const shadowColor = useColorModeValue(theme.colors.brand.black, theme.colors.brand.cardinal);
   const shadowOffset = '12px';
   const shadowOffsetLight = '16px';
-  const cardNameColor = useColorModeValue(theme.colors.brand.black, theme.colors.brand.chartreuse);
-  const buttonText = useColorModeValue(theme.colors.brand.black, theme.colors.brand.black);
+  const cardNameColor = useColorModeValue(theme.colors.brand.black, theme.colors.brand.black);
+  const buttonText = useColorModeValue(theme.colors.brand.black, theme.colors.brand.cardinal);
   const buttonBg = useColorModeValue(theme.colors.brand.backgroundLight, theme.colors.brand.backgroundDark);
   const buttonBgHover = useColorModeValue(theme.colors.brand.backgroundLight, theme.colors.brand.backgroundDark);
 

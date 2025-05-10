@@ -5,11 +5,9 @@ import {
   HStack,
   Text,
   Heading,
-  Button,
   Image,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
 import AnimatedButton from '../components/AnimatedButton';
 
 export default function LandingPage() {
@@ -17,9 +15,7 @@ export default function LandingPage() {
   const containerBg = useColorModeValue('brand.backgroundLight', 'brand.backgroundDark');
   const headingColor = useColorModeValue('brand.cardinal', 'brand.chartreuse');
   const bodyColor = useColorModeValue('brand.textPrimaryLight', 'brand.textSecondaryDark');
-  const accentColor = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
-  const buttonTextColor = useColorModeValue('brand.black', 'brand.black');
-  const buttonHoverBg = useColorModeValue('brand.chartreuse', 'brand.chartreuse');
+
 
   const landingBlurb = `
 From Navy submarine mechanic to FAANG software engineer, I bring 15+ years of disciplined problem-solving and technical mastery to every project. 
@@ -69,20 +65,10 @@ Specializing in full-stack development, I combine deep technical expertise with 
               label="View My Projects"
               onClick={() => (window.location.href = '/projects')}
             />
-            <Button
-              as={RouterLink}
-              to="/contact"
-              bg={accentColor}
-              color={buttonTextColor}
-              fontWeight="bold"
-              rounded="md"
-              px={6}
-              py={3}
-              _hover={{ bg: buttonHoverBg }}
-              fontFamily="body"
-            >
-              Get in Touch
-            </Button>
+            <AnimatedButton
+    label="Get in Touch"
+    to="/contact"
+  />
           </HStack>
         </Box>
 
