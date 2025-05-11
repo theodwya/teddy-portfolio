@@ -7,6 +7,7 @@ import About from './pages/About';
 import LandingPage from './pages/LandingPage'; // import landing page
 import Resume from './pages/Resume'; // import resume page
 import BlogPage from './pages/BlogPage'; // import blog page
+import ProjectsPage from './pages/ProjectsPage'; // import projects page
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -27,9 +28,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           {/* Add other routes here */}
-          {/* <Route path="/projects" element={<Projects />} /> */}
+          <Route path="/projects" element={<ProjectsPage />} /> 
           {/* <Route path="/contact" element={<Contact />} /> */}
           <Route path="/blog" element={<BlogPage />} />
+
           {/* <Route path="/projects/:id" element={<ProjectDetail />} /> */}
           {/* Add other routes here */}
         </Routes>
