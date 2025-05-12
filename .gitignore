@@ -1,0 +1,59 @@
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+*.out
+*.pid
+
+# Environment files
+.env
+.env.*.local
+
+# Dist and Build
+dist/
+build/
+.next/
+out/
+
+# Vite cache
+.vite/
+.cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# Misc
+*.tgz
+*.zip
+
+# Client specific (React + Tailwind)
+client/public/env.js
+
+# Server build
+server/dist/
